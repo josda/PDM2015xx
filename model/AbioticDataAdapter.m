@@ -3,7 +3,7 @@ classdef AbioticDataAdapter < DataAdapter
     %%%observation object.
     %%%Accepeted file type is:
     %%% - txt-file
-    %%%
+    %%%vad som helst
     %%%Format for one row needs to be (for example):
     %%%2014-09-19_16_22_39	;	437,17;ppm	;	26,41;°C	;	39,29;%
     
