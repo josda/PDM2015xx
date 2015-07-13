@@ -336,23 +336,49 @@ classdef Observation < handle
                 end
                 
             elseif strcmp(type,'SpectroJaz')
-                for i=2:height
-                    y1 = matrix{i,y1pos};
-                    x1 = matrix{i,x1newpos};
-                    y2 = matrix{i,y2pos};
-                    x2 = matrix{i,x2newpos};
-                    
-                    x1new = linspace(200,800,dsrate);
-                    x2new = round(linspace(200,800,dsrate));
-                    
-                    y1 = interp1(x1,y1,x1new);
-                    y2 = interp1(x2,y2,x2new);
-                    
-                    matrix{i,y1pos} = y1;
-                    matrix{i,y2pos} = y2;
-                    matrix{i,x2newpos} = x2new;
-                    matrix{i,x1newpos} = x1new;
-                end
+%                 for i=2:height
+%                     y1 = matrix{i,y1pos};
+%                     x1 = matrix{i,x1newpos};
+%                     y2 = matrix{i,y2pos};
+%                     x2 = matrix{i,x2newpos};
+%                     
+%                     x1new = linspace(200,800,dsrate);
+%                     x2new = round(linspace(200,800,dsrate));
+%                     
+%                     y1 = interp1(x1,y1,x1new);
+%                     y2 = interp1(x2,y2,x2new);
+%                     
+%                     matrix{i,y1pos} = y1;
+%                     matrix{i,y2pos} = y2;
+%                     matrix{i,x2newpos} = x2new;
+%                     matrix{i,x1newpos} = x1new;
+%                 end
+                    for i=2:height
+                        y1 = matrix{i,y1pos};
+                        x1 = matrix{i,x1newpos};
+                        y2 = matrix{i,y2pos};
+                        x2 = matrix{i,x2newpos};
+                        
+                        if (this.getInterp(type))
+                            x1new = linspace(200,800,dsrate);
+                            x2new = round(linspace(200,800,dsrate));
+
+                            y1 = interp1(x1,y1,x1new);
+                            y2 = interp1(x2,y2,x2new);
+
+                            matrix{i,y1pos} = y1;
+                            matrix{i,y2pos} = y2;
+                            matrix{i,x2newpos} = x2new;
+                            matrix{i,x1newpos} = x1new;
+                        else
+                            startIndex = find(round(x1)==200,1);
+                            endIndex = find(round(x1)==800,1);
+                            matrix{i,y1pos} = y1(startIndex:endIndex);
+                            matrix{i,y2pos} = y2(startIndex:endIndex);
+                            matrix{i,x2newpos} = x2(startIndex:endIndex);
+                            matrix{i,x1newpos} = x1(startIndex:endIndex);
+                        end
+                    end
                 
             elseif strcmp(type,'Olfactory')
                 y1pos = uint32(Constants.OlfYPos);
@@ -625,13 +651,7 @@ classdef Observation < handle
         end
         
         function section = getSection(this,h1,h2,w1,w2)
-            %if length(varargin) == 4
-            %                h1 = varargin{1};
-            %                h2= varargin{2};
-            %                w1= varargin{3};
-            %                w2 = varargin{4};
             section = this.xlsMatrix(h1:h2,w1:w2);
-            %end
         end
         
         function row = getRowFromID(this,id)

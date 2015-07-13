@@ -34,6 +34,9 @@ classdef SpectroJazDataAdapter < DataAdapter
         
         function obs = getObservation(this,paths)
             
+            load('whiteref');
+            
+            
             len = length(paths);
             this.nrOfPaths = len;
             obs = Observation();
@@ -62,7 +65,9 @@ classdef SpectroJazDataAdapter < DataAdapter
                         rawData = this.fileReader(path_,'');
 
                         this.tempMatrix{2,3} = rawData(:,1);
-                        this.tempMatrix{2,4} = rawData(:,4);
+                        %%this.tempMatrix{2,4} = rawData(:,4);
+                        calculatedValue = (rawData(:,4)-rawData(:,2))./(WRavg-rawData(:,2));
+                        this.tempMatrix{2,4} = calculatedValue;
                     case 'U'
                         %Needs to be called with filetype so that the file reader know
                         %how to read it
