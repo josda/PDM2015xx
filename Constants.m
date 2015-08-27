@@ -26,8 +26,8 @@ classdef Constants < uint32
        OlfYPos (54)
        
        %%Spectro
-       SpectroJazStart (200)
-       SpectroJazEnd (800)
+       SpectroJazStart (260)
+       SpectroJazEnd (760)
        SpectroJazDP (601)
        
        SpectroStart (380)
