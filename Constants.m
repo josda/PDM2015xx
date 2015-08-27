@@ -13,7 +13,7 @@ classdef Constants < uint32
        %variables and not variables fetched from data but from the folder
        %structre. Such as Flower, id, date, positive, negative. All strings
        %should be within this limit aswell.
-       StandardVarsPos (9);
+       StandardVarsPos (10);
        
        %%Column position of Spectro arrays
        SpectroXPos (49)
@@ -26,8 +26,8 @@ classdef Constants < uint32
        OlfYPos (54)
        
        %%Spectro
-       SpectroJazStart (200)
-       SpectroJazEnd (800)
+       SpectroJazStart (260)
+       SpectroJazEnd (760)
        SpectroJazDP (601)
        
        SpectroStart (380)
