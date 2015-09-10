@@ -166,13 +166,7 @@ classdef BehaviorDataAdapter < DataAdapter
                         
                         for j=1:this.size_
                             if strcmp(this.tempMatrix{1,j},var1)
-%                                 The following row is changed 10 sept 2015
-%                                 in order to not use frequency and
-%                                 duration based on observation time, but
-%                                 instead the raw data. (I have removed
-%                                 "/time") The same occurs for var 1 as
-%                                 well as for var2 to get both frequency
-%                                 and duration.
+                                
 %                                 this.tempMatrix{i+1,j} = obs{k,2}/time;
 this.tempMatrix{i+1,j} = obs{k,2};
                             end
