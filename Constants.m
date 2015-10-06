@@ -28,7 +28,7 @@ classdef Constants < uint32
        %%Spectro
        SpectroJazStart (260)
        SpectroJazEnd (760)
-       SpectroJazDP (601)
+       SpectroJazDP (501)
        
        SpectroStart (380)
        SpectroEnd (600)

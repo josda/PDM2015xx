@@ -360,8 +360,8 @@ classdef Observation < handle
                         x2 = matrix{i,x2newpos};
                         
                         if (this.getInterp(type))
-                            x1new = linspace(200,800,dsrate);
-                            x2new = round(linspace(200,800,dsrate));
+                            x1new = linspace(260,760,dsrate);
+                            x2new = round(linspace(260,760,dsrate));
 
                             y1 = interp1(x1,y1,x1new);
                             y2 = interp1(x2,y2,x2new);
@@ -371,8 +371,8 @@ classdef Observation < handle
                             matrix{i,x2newpos} = x2new;
                             matrix{i,x1newpos} = x1new;
                         else
-                            startIndex = find(round(x1)==200,1);
-                            endIndex = find(round(x1)==800,1);
+                            startIndex = find(round(x1)==260,1);
+                            endIndex = find(round(x1)==760,1);
                             matrix{i,y1pos} = y1(startIndex:endIndex);
                             matrix{i,y2pos} = y2(startIndex:endIndex);
                             matrix{i,x2newpos} = x2(startIndex:endIndex);
