@@ -64,8 +64,8 @@ classdef WeatherDataAdapter < DataAdapter
         
         %%
         function [months,year] = getWeatherTimeInfo(this,fname)
-%             fname = strrep(fname,'.dat','');
-        fname = strrep(fname,'.txt','');
+            fname = strrep(fname,'.dat','');
+%         fname = strrep(fname,'.txt','');
             parts = regexp(fname,'_','split');
             year = parts{1};
             months = parts(2:end);
