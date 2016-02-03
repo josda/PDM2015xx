@@ -65,16 +65,16 @@ classdef SpectroJazDataAdapter < DataAdapter
                         rawData = this.fileReader(path_,'');
 
                         this.tempMatrix{2,3} = rawData(:,1);
-                        this.tempMatrix{2,4} = rawData(:,5);
-%                         calculatedValue = (rawData(:,4)-rawData(:,2))./(WRavg-rawData(:,2));
-%                         this.tempMatrix{2,4} = calculatedValue;
+                        %%this.tempMatrix{2,4} = rawData(:,4);
+                        calculatedValue = (rawData(:,4)-rawData(:,2))./(WRavg-rawData(:,2));
+                        this.tempMatrix{2,4} = calculatedValue;
                     case 'U'
                         %Needs to be called with filetype so that the file reader know
                         %how to read it
                         rawData = this.fileReader(path_,'');
 
                         w = rawData(:,1);
-                        s = rawData(:,5);
+                        s = rawData(:,4);
                         this.tempMatrix{2,5} = w;
                         this.tempMatrix{2,6} = s;
                     case 'l'
