@@ -65,30 +65,8 @@ classdef SpectroJazDataAdapter < DataAdapter
                         rawData = this.fileReader(path_,'');
 
                         this.tempMatrix{2,3} = rawData(:,1);
-                        %%this.tempMatrix{2,4} = rawData(:,4); JD Comment:
-                        %%vet inte varför detta är kommenterat
-                        
-%                         orginalversion
-%                         calculatedValue = (rawData(:,4)-rawData(:,2))./(WRavg-rawData(:,2));
-%                         slut orginalversion
-                        
-                        %Karin ändrat här
-                        taljare=(rawData(:,4)-mean(rawData(100:end-100,2)));
-                        namnare=(WRavg-mean(rawData(100:end-100,2)));
-                        
-                        for n=1:length(rawData(:,2)) %gå igenom jaz-filen datapunkt för datapunkt, kolla att i inte använts ngn annanstans, byt i så fall till en annan bokstav här och i de 5 raderna nedanför
-
-                            if taljare(n)<0 %täljaren ska aldrig vara mindre än 0, i så fall är det en artefakt och byt till 0
-                                taljare(n)=0;
-                            end
-
-                            if namnare(n)<0 %nämnaren ska aldrig vara mindre än 0, och heller aldrig 0, för då går det inte att dividera
-                                namnare(n)=1;
-                            end
-                        end
-                        calculatedValue = taljare./namnare;
-                        %slut Karin ändring
-
+                        this.tempMatrix{2,4} = rawData(:,4);
+                        calculatedValue = (rawData(:,4)-rawData(:,2))./(WRavg-rawData(:,2));
                         this.tempMatrix{2,4} = calculatedValue;
                     case 'U'
                         %Needs to be called with filetype so that the file reader know

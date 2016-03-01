@@ -61,11 +61,12 @@ classdef SpectroJazDataAdapter < DataAdapter
                 switch (prefix)
                     case 'F'
                         %Needs to be called with filetype so that the file reader know
-                        %how to read it
+                        %how to read it--Karin
                         rawData = this.fileReader(path_,'');
 
                         this.tempMatrix{2,3} = rawData(:,1);
-                        %%this.tempMatrix{2,4} = rawData(:,4);
+                        %%this.tempMatrix{2,4} = rawData(:,4); JD Comment:
+                        %%vet inte varför detta är kommenterat
                         calculatedValue = (rawData(:,4)-rawData(:,2))./(WRavg-rawData(:,2));
                         this.tempMatrix{2,4} = calculatedValue;
                     case 'U'
